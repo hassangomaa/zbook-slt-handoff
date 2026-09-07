@@ -1,0 +1,19 @@
+{
+  "name": "@slt/license-core",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared licence contract: canonical serialisation, Ed25519 signing and verification, the module registry, and machine fingerprinting. Imported by BOTH the client and the issuer so the two can never drift.",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./crypto": "./crypto.mjs",
+    "./modules": "./modules.mjs",
+    "./license": "./license.mjs",
+    "./fingerprint": "./fingerprint.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/"
+  },
+  "engines": { "node": ">=20" }
+}

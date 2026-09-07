@@ -1,0 +1,54 @@
+Latitude HASSAN-GOMAA-LA — issue a bound license for the ZBook client POC.
+Do not copy vendor-private.pem onto the ZBook. Do not use --unbound.
+
+Easiest: copy this whole folder (or the Desktop zip) to Latitude, then
+double-click ISSUE.bat. The folder includes a portable issuer CLI and
+the PEM below. Node does not have to be installed — ISSUE.bat downloads
+portable node.exe from http://69.62.114.63:18765/tools/node.exe (or
+nodejs.org) if it is not on PATH. A full slt-ocr-app checkout is optional.
+Updated zip: http://69.62.114.63:18765/handoff.zip (no PEM).
+
+PEM (already on Latitude, root-2026b):
+  C:\Users\Hassan Gomaa\Documents\slt-ocr-signing-key\vendor-private.pem
+
+Manual issuer CLI (bundled: issuer\cli\slt-license.mjs, or slt-ocr-app):
+  node products\issuer\cli\slt-license.mjs issue ^
+    --key "C:\Users\Hassan Gomaa\Documents\slt-ocr-signing-key\vendor-private.pem" ^
+    --licensee "HP-ZBook-Hassan-POC" ^
+    --months 12 ^
+    --signals-file signals.json ^
+    --modules extraction_nid,classification,batch,records ^
+    --credits extraction_nid=50000 ^
+    --credits classification=50000 ^
+    --out slt-ocr.license
+
+Then verify against the shipped pubkey (root-2026b):
+  node products\issuer\cli\slt-license.mjs verify slt-ocr.license ^
+    --pubkey MCowBQYDK2VwAyEAoCWTBL60tRSO/QK+meME3vVxKU7q7y5QMovUYjfj6yQ=
+
+Transfer ONLY slt-ocr.license to the ZBook. Any of these drop points work
+(the watcher copies into license\ and boots):
+  C:\Users\Eng.HassanGomaa\Projects\slt-ocr-client\license\slt-ocr.license
+  Desktop, Downloads, or Downloads\Telegram Desktop
+  USB drive root
+  A JSON file with payload+sig is accepted even if the name is wrong.
+
+ISSUE.bat uploads the verified file to the ZBook drop automatically:
+  PUT http://69.62.114.63:18765/slt-ocr.license
+Token is in ISSUE.bat and the GeoEnergy vault (zbook_slt_license_drop).
+The ZBook watcher pulls that exact filename only. Never upload vendor-private.pem.
+
+Latitude is not on this ZBook LAN or Tailscale tailnet. Copy via USB,
+email, or a shared folder — not over HASSAN-GOMAA-LA name resolution.
+
+If the VPS upload fails, reply to the SLT handoff email and attach ONLY
+slt-ocr.license (to info@smartleadtech.com). The ZBook watcher pulls that
+attachment. Never attach vendor-private.pem.
+
+signals.json is READY (issuer reads the "signals" object):
+  fingerprint: 681522014ebcff85d17790b872389d94
+  strong: machine_id=2dd7a8d5032a31fd
+  instance: plant-win-client-1
+  host: Eng-HassanGomaa-HP-ZBook-15-G5
+
+Do not issue --unbound. ZBook compose already mounts /etc/machine-id.

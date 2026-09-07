@@ -1,0 +1,12 @@
+{
+  "fingerprint": "681522014ebcff85d17790b872389d94",
+  "host": "Eng-HassanGomaa-HP-ZBook-15-G5",
+  "instance_id_env": "plant-win-client-1",
+  "note": "Collected inside capsule 1.0.7 with /etc/machine-id mounted. Compose must keep that mount or machine_id will be null at boot.",
+  "signals": {
+    "machine_id": "2dd7a8d5032a31fd",
+    "mac": "e6abcabcea374916",
+    "cpu": "58724bda79ea379e",
+    "instance_id": "05338b5148288d2a"
+  }
+}
