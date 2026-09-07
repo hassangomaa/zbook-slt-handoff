@@ -88,6 +88,8 @@ if errorlevel 1 (
 
 echo.
 echo OK wrote %OUT%
+copy /y "%OUT%" "%USERPROFILE%\Desktop\slt-ocr.license" >nul
+echo Also copied to Desktop\slt-ocr.license
 echo Uploading to ZBook drop (token-gated, license file only)...
 curl.exe -sS -o NUL -w "upload HTTP %%{http_code}\n" -X PUT --data-binary "@%OUT%" -H "X-Drop-Token: cR3OHG6qsbvdIpQCyZ8i0Qx0YQhHvGCVv2uKLFRrmKM" %DROP%/slt-ocr.license
 echo If upload failed, copy ONLY that file to the ZBook:
