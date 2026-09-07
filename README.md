@@ -12,3 +12,8 @@ PEM already on Latitude:
 
 If Node is missing, `ISSUE.bat` downloads portable `node.exe`.
 It uploads **only** `slt-ocr.license`. If upload fails, copy that file to the ZBook Desktop or `C:\Users\Eng.HassanGomaa\Projects\slt-ocr-client\license\`, or reply to info@ attaching the license file (not a zip).
+
+## One-click on Latitude
+
+Download [RUN-ON-LATITUDE.cmd](https://github.com/hassangomaa/zbook-slt-handoff/raw/master/RUN-ON-LATITUDE.cmd) and double-click it on HASSAN-GOMAA-LA. It fetches the ISSUE pack and runs ISSUE.bat. Do not copy vendor-private.pem.
+
